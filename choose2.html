@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>choose2</title>
+	<style>
+		
+		body {
+			color:#000;
+		}
+		.SubCategoryBox {
+			width: 100%;
+			height: 300px;
+		}
+		ul {
+			list-style: none;
+			height: 100px;
+		}
+		
+		li {
+			width: 33%;
+			float: left;
+		}
+		a {
+			text-decoration: none;
+			color:#000;
+		}
+		.showmore {
+			width: 100%;
+			height: 100px;	
+			text-align: center;
+		}
+		span {
+			border: 1px solid #000;
+			padding-top: 10px;
+			padding-left: 50px;
+			padding-bottom: 10px;
+			padding-right: 50px;	
+		}
+		.promoted {
+			color:#f00;
+		}
+	</style>
+</head>
+<body>
+	<div class="SubCategoryBox">
+			<ul>
+				<li><a href="#">佳能</a><i>(30440)</i></li>
+				<li><a href="#">索尼</a><i>(27220)</i></li>
+				<li><a href="#">三星</a><i>(20808)</i></li>
+				<li><a href="#">尼康</a><i>(17821)</i></li>
+				<li><a href="#">松下</a><i>(8242)</i></li>
+				<li><a href="#">卡西欧</a><i>(14894)</i></li>
+				<li><a href="#">富士</a><i>(9520)</i></li>
+				<li><a href="#">柯达</a><i>(2195)</i></li>
+				<li><a href="#">宾得</a><i>(4114)</i></li>
+				<li><a href="#">理光</a><i>(12205)</i></li>
+				<li><a href="#">奥林巴斯</a><i>(1466)</i></li>
+				<li><a href="#">明基</a><i>(3091)</i></li>
+				<li><a href="#">爱国者</a><i>(7275)</i></li>
+				<li><a href="#">其他品牌相机</a><i>(1245)</i></li>
+			</ul>
+			<div class="showmore">
+				<a href="more.html"><span>显示全部品牌</span></a>
+			</div>
+	</div>
+	<script src="jquery-1.11.3.min.js"></script>
+	<script>
+	$(function(){
+		var $category = $('ul li:gt(5):not(:last)');
+		var $toggleBtn = $('div.showmore>a');
+		$category.hide();	
+		$toggleBtn.click(function(){
+			if($category.is(":visible")){
+				$category.hide();
+				$(this).find('span').text("显示全部品牌");
+				$('ul li>a').removeClass("promoted"); 
+			}else{
+				$category.show();
+			 	$(this).find('span').text("显示精选品牌");
+			 	$('ul li>a').filter(":contains('佳能'),:contains('尼康'),:contains('奥林巴斯')")
+			 		.addClass("promoted"); 
+			}
+			return false;
+		})
+	})
+
+
+
+
+
+
+	</script>
+</body>
+</html>

@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>chooseform</title>
+	<style>
+		td {
+			width: 150px;
+			height: 20px;
+		}
+		.odd {
+			background: #ccc;
+		}
+		.even {
+			background: #cecece;
+		}
+		.selected {
+			background: yellow;
+		}
+		.parent {
+			width: 450px;
+		}
+	</style>
+</head>
+<body>
+	查找:<input type="text" id="filterfrom">
+	<div id="chooseFrom">
+	<table id="tbl">
+		<thead >
+			<tr><th>姓名</th><th>性别</th><th>暂住地</th></tr>
+		</thead>
+		<tbody>
+			<tr class="parent"><td>前台开发组</td></tr>
+			<tr><td>张山</td><td>男</td><td>浙江宁波</td></tr>
+			<tr><td>李四</td><td>女</td><td>浙江杭州</td></tr>
+			<tr class="parent"><td>前台设计组</td></tr>
+			<tr><td>王五</td><td>男</td><td>湖南长沙</td></tr>
+			<tr class="parent"><td>后端设计组</td></tr>
+			<tr><td>rain</td><td>男</td><td>浙江温州</td></tr>
+			<tr><td>MEMA</td><td>女</td><td>浙江杭州</td></tr>
+		</tbody>
+		</table>
+	</div>
+	<script src="jquery-1.11.3.min.js"></script>
+	<script>
+		$(function(){
+			$('tbody>tr:odd').addClass('odd');
+			$('tbody>tr:even').addClass('even');
+			// $("tr:hover").addClass('selected');
+			$('tr').on('mousemove',function(){
+				$(this).addClass('selected');
+			}).on('mouseout',function(){
+				$(this).removeClass('selected');
+			});
+			$('.parent').on('click',function(){
+				 $(this).nextUntil('.parent').toggle();
+			});
+			$('#filterfrom').on('keyup',function(){
+				$('#tbl tbody tr').hide();
+				$('#tbl tbody tr:contains('+this.value+')').show();
+			});
+});
+	</script>
+</body>
+</html>
